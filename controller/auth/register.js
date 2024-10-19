@@ -12,6 +12,14 @@ module.exports = {
                 message: "Password and password confirmation do not match."
             });
         }
+
+        // Tambahkan pengecekan untuk memastikan password tersedia
+        if (!password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Password is required'
+            });
+        }
     
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -56,4 +64,4 @@ module.exports = {
             });
         }
     }
-}    
+}
